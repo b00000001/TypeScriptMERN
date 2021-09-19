@@ -3,5 +3,9 @@
     "plugins": ["@typescript-eslint"],
     "extends": [
       "plugin:@typescript-eslint/recommended"
-    ]
+    ],
+    "rules": {
+        "no-console": 2, // Will give an error for unattended console.logs
+        "semi": "error"
+    }
   }
