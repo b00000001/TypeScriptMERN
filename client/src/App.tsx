@@ -6,7 +6,6 @@ import LoginSignup from "./components/LoginSignup/index";
 import "./App.css";
 
 function App() {
-  console.log("West");
   return (
     <div className="App bg-gray-800 h-screen">
       <Router>

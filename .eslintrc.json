@@ -1,11 +1,28 @@
 {
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "extends": [
-      "plugin:@typescript-eslint/recommended"
-    ],
-    "rules": {
-        "no-console": 2, // Will give an error for unattended console.logs
-        "semi": "error"
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react-hooks"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+    "no-console": "error",
+    "semi": "error"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
     }
   }
+}

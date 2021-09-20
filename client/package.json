@@ -28,7 +28,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-console": "error",
+      "semi": "error"
+    }
   },
   "browserslist": {
     "production": [
@@ -44,7 +48,6 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.9",
-    "@typescript-eslint/parser": "^4.31.1",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.36",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14"
