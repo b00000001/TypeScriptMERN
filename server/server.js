@@ -1,7 +1,5 @@
 var express = require("express");
 var app = express();
-require("dotenv").config();
-const { ApolloServer } = require("apollo-server-express");
 var port = process.env.PORT || 3001;
 app.get("/", function (req, res) {
   res.send("Hello World!");
