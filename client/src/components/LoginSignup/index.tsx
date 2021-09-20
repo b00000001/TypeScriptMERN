@@ -2,8 +2,8 @@ import React from "react";
 
 const Test = () => {
   return (
-    <div>
-      <h1>Test Page</h1>
+    <div className="text-white">
+      <h1>Login Page</h1>
     </div>
   );
 };
