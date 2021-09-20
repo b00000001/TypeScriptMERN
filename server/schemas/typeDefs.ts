@@ -10,6 +10,10 @@ type User {
 type Query {
     user(name: String!): User
 }
+
+type Mutation {
+    addUser:(email: String!, name: String!): User
+}
 `;
 
 module.exports = typeDefs;
