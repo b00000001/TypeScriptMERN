@@ -1,30 +1,24 @@
-const express = require('express');
+import express from "express";
+import path from "path";
 const app = express();
-const path = require('path');
-const {typeDefs} = require('./schemas');
-require("dotenv").config();
-const { ApolloServer } = require("apollo-server-express");
-const port = process.env.PORT || 3001;
-
-const db = require('./config/connection');
-
-const server = new ApolloServer({ typeDefs });
+const PORT = 3001; // default port to listen
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '.env' });
+// define a route handler for the default home page
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
   }
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+app.get("*", ( _, res ) => {
+    // render the index template
+    res.sendFile(path.join(__dirname, '../../client/build/index.html'));
 });
 
-db.sync().then(() =>{
-    server.listen(port, () => {
+// start the express server
+app.listen( PORT, () => {
         //eslint-disable-next-line no-console
-        console.log(`App running at http://localhost:${port}`)
-    });
-})
-
-
-export {}
- 
+        console.log( `server started at http://localhost:${ PORT }` );
+} );

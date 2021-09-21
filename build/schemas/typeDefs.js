@@ -1,6 +1,5 @@
-const {gql} = require('apollo-server-express');
-
-const typeDefs = gql`
+const { gql } = require('apollo-server-express');
+const typeDefs = gql `
 type User {
     id: ID!
     name: String
@@ -16,5 +15,5 @@ type Mutation {
     addUser(email: String!, name: String!): User  
 }
 `;
-
 module.exports = typeDefs;
+//# sourceMappingURL=typeDefs.js.map
