@@ -1,10 +1,18 @@
 import express from "express";
 import path from "path";
-const app = express();
-const PORT = 3001; // default port to listen
+import {ApolloServer } from 'apollo-server-express';
 import * as dotenv from 'dotenv';
+const PORT = 3001; // default port to listen
+const app = express();
+const {typeDefs}  = require('./schemas')
 dotenv.config({ path: '.env' });
 // define a route handler for the default home page
+const server = new ApolloServer({
+    typeDefs
+});
+
+server.applyMiddleware({ app });
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -22,3 +30,4 @@ app.listen( PORT, () => {
         //eslint-disable-next-line no-console
         console.log( `server started at http://localhost:${ PORT }` );
 } );
+
