@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/server.js",
     "watch": "nodemon",
-    "seed": "node config/seeds.js"
+    "preseed": "node seeders/db.ts",
+    "seed": "if-env NODE_ENV=production node seeders/seed.js || node seeders/db.js && node seeders/seed.js"
   },
   "keywords": [],
   "author": "",
