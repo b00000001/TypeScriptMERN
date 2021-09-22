@@ -1,3 +1,2 @@
-const typeDefs = require('./typeDefs');
-
+import typeDefs from './typeDefs';
 export default typeDefs;

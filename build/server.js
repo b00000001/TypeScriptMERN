@@ -27,12 +27,13 @@ const path_1 = __importDefault(require("path"));
 const apollo_server_express_1 = require("apollo-server-express");
 const dotenv = __importStar(require("dotenv"));
 const schemas_1 = __importDefault(require("./schemas"));
+const db = require('./config/connection');
 const PORT = 3001; // default port to listen
 const app = (0, express_1.default)();
 dotenv.config({ path: '.env' });
 // define a route handler for the default home page
 const server = new apollo_server_express_1.ApolloServer(schemas_1.default);
-// server.applyMiddleware({ app });
+server.applyMiddleware({ app });
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
 if (process.env.NODE_ENV === 'production') {
@@ -43,8 +44,10 @@ app.get("*", (_, res) => {
     res.sendFile(path_1.default.join(__dirname, '../../client/build/index.html'));
 });
 // start the express server
-app.listen(PORT, () => {
-    //eslint-disable-next-line no-console
-    console.log(`server started at http://localhost:${PORT}`);
+db.sync().then(() => {
+    app.listen(PORT, () => {
+        console.log(`API server running on port ${PORT}!`);
+        console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    });
 });
 //# sourceMappingURL=server.js.map

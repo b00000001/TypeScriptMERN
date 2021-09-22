@@ -3,13 +3,14 @@ import path from "path";
 import { ApolloServer } from 'apollo-server-express';
 import * as dotenv from 'dotenv';
 import typeDefs from './schemas'
+const db = require('./config/connection');
 const PORT = 3001; // default port to listen
 const app: Application = express();
 dotenv.config({ path: '.env' });
 // define a route handler for the default home page
-const server = new ApolloServer(typeDefs);
+const server = new ApolloServer({typeDefs});
 
-// server.applyMiddleware({ app });
+server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -24,8 +25,10 @@ app.get("*", ( _, res: Response ) => {
 });
 
 // start the express server
-app.listen( PORT, () => {
-        //eslint-disable-next-line no-console
-        console.log( `server started at http://localhost:${ PORT }` );
-} );
-
+db.sync().then(() => {
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    });
+  });
+  
