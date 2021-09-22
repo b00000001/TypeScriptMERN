@@ -1,5 +1,3 @@
 const typeDefs = require('./typeDefs');
 
-module.exports = { typeDefs };
-
-export {}
+export default typeDefs;

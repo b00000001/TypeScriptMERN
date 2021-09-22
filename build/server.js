@@ -24,18 +24,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
-const app = (0, express_1.default)();
-const port = 3001; // default port to listen
+const apollo_server_express_1 = require("apollo-server-express");
 const dotenv = __importStar(require("dotenv"));
+const schemas_1 = __importDefault(require("./schemas"));
+const PORT = 3001; // default port to listen
+const app = (0, express_1.default)();
 dotenv.config({ path: '.env' });
 // define a route handler for the default home page
+const server = new apollo_server_express_1.ApolloServer(schemas_1.default);
+// server.applyMiddleware({ app });
+app.use(express_1.default.urlencoded({ extended: false }));
+app.use(express_1.default.json());
+if (process.env.NODE_ENV === 'production') {
+    app.use(express_1.default.static(path_1.default.join(__dirname, '../client/build')));
+}
 app.get("*", (_, res) => {
     // render the index template
-    res.sendFile(path_1.default.join(__dirname, '../client/build/index.html'));
+    res.sendFile(path_1.default.join(__dirname, '../../client/build/index.html'));
 });
 // start the express server
-app.listen(port, () => {
+app.listen(PORT, () => {
     //eslint-disable-next-line no-console
-    console.log(`server started at http://localhost:${port}`);
+    console.log(`server started at http://localhost:${PORT}`);
 });
 //# sourceMappingURL=server.js.map

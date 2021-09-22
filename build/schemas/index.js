@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeDefs = require('./typeDefs');
-module.exports = { typeDefs };
+exports.default = typeDefs;
 //# sourceMappingURL=index.js.map

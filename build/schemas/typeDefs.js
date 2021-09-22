@@ -1,5 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const { gql } = require('apollo-server-express');
-const typeDefs = gql `
+exports.default = gql `
 type User {
     id: ID!
     name: String
@@ -15,5 +17,4 @@ type Mutation {
     addUser(email: String!, name: String!): User  
 }
 `;
-module.exports = typeDefs;
 //# sourceMappingURL=typeDefs.js.map
