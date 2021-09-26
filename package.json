@@ -16,7 +16,7 @@
     "url": "git+https://github.com/b00000001/TypeScriptMERN.git"
   },
   "keywords": [],
-  "author": "Aaron J Deas",
+  "author": "Aaron Deas",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/b00000001/TypeScriptMERN/issues"
@@ -28,6 +28,7 @@
     "@typescript-eslint/parser": "^4.31.1",
     "autoprefixer": "^9.8.6",
     "concurrently": "^6.2.1",
+    "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
