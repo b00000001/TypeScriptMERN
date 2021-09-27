@@ -23,10 +23,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var apollo_server_express_1 = require("apollo-server-express");
 var dotenv = __importStar(require("dotenv"));
 var path = __importStar(require("path"));
+var typeDefs = require('./schemas').typeDefs;
 dotenv.config();
 var app = (0, express_1.default)();
+var server = new apollo_server_express_1.ApolloServer({
+    typeDefs: typeDefs
+});
 var PORT = process.env.PORT || 3001;
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());

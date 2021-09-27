@@ -1,9 +1,14 @@
 import express from 'express'
+import { ApolloServer } from 'apollo-server-express';
 import * as dotenv from 'dotenv'
 import * as path from 'path'
+const { typeDefs } = require('./schemas');
 dotenv.config();
 
 const app = express();
+const server = new ApolloServer({
+    typeDefs
+})
 
 const PORT = process.env.PORT || 3001;
 
