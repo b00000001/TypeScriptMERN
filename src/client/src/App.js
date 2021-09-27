@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 var __assign =
   (this && this.__assign) ||
   function () {
@@ -16,7 +17,6 @@ var __assign =
 import { jsx as _jsx } from 'react/jsx-runtime';
 import './App.css';
 function App() {
-  console.log('test');
   return _jsx(
     'div',
     __assign(

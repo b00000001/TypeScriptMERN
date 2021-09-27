@@ -1,6 +1,6 @@
-import express from 'express';
-import * as dotenv from 'dotenv';
-import * as path from 'path';
+import express from 'express'
+import * as dotenv from 'dotenv'
+import * as path from 'path'
 dotenv.config();
 
 const app = express();
@@ -21,4 +21,4 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(PORT,() => {
     //eslint-disable-next-line no-console
     console.log(`Server listening on port ${PORT}`);
-})
+});
