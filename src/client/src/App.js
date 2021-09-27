@@ -12,6 +12,7 @@ var __assign = (this && this.__assign) || function () {
 import { jsx as _jsx } from "react/jsx-runtime";
 import './App.css';
 function App() {
+    console.log('oh, hi');
     return (_jsx("div", __assign({ className: "App" }, { children: _jsx("h1", { children: "Welcome" }, void 0) }), void 0));
 }
 export default App;

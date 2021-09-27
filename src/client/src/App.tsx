@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  console.log('oh, hi');
   return (
     <div className="App">
       <h1>Welcome</h1>
