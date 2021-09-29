@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "seed": "if-env NODE_ENV=production node seeders/seed.js || node seeders/db.js && node seeders/seed.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^10.0.0",
+    "if-env": "^1.0.4",
     "nodemon": "^2.0.13"
   },
   "dependencies": {
