@@ -26,12 +26,14 @@ var express_1 = __importDefault(require("express"));
 var apollo_server_express_1 = require("apollo-server-express");
 var dotenv = __importStar(require("dotenv"));
 var path = __importStar(require("path"));
+var db = require('./config/connection');
 var typeDefs = require('./schemas').typeDefs;
 dotenv.config();
 var app = (0, express_1.default)();
 var server = new apollo_server_express_1.ApolloServer({
     typeDefs: typeDefs
 });
+server.applyMiddleware({ app: app });
 var PORT = process.env.PORT || 3001;
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
@@ -41,7 +43,11 @@ if (process.env.NODE_ENV === 'production') {
 app.get('*', function (_, res) {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-app.listen(PORT, function () {
-    //eslint-disable-next-line no-console
-    console.log("Server listening on port " + PORT);
+db.sync().then(function () {
+    app.listen(PORT, function () {
+        // eslint-disable-next-line no-console
+        console.log("API server running on port " + PORT + "!");
+        // eslint-disable-next-line no-console
+        console.log("Use GraphQL at http://localhost:" + PORT + server.graphqlPath);
+    });
 });

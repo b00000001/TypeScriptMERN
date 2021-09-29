@@ -1,4 +1,5 @@
 /* eslint-disable import/first */
+
 var __assign =
   (this && this.__assign) ||
   function () {

@@ -1,5 +1,14 @@
 import { gql } from 'apollo-server-express'
 
-const typeDefs = gql``
+const typeDefs = gql`
+type User {
+    id: ID
+    username: String
+    email: String
+}
+type Query {
+    users: [User]
+    user(id: ID!): User
+}`
 
 export = typeDefs
