@@ -18,9 +18,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var sequelize_1 = require("sequelize");
 var dotenv = __importStar(require("dotenv"));
-dotenv.config({ path: './env' });
+var path_1 = __importDefault(require("path"));
+dotenv.config({ path: path_1.default.resolve(__dirname, '../.env') });
 var sequelize;
 if (process.env.JAWSDB_URL) {
     sequelize = new sequelize_1.Sequelize(process.env.JAWSDB_URL);

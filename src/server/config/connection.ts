@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize'
 import * as dotenv from 'dotenv'
-dotenv.config({ path: './env' })
+import path from 'path'
+dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
 let sequelize
 
