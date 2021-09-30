@@ -1,3 +1,4 @@
 "use strict";
 const typeDefs = require('./typeDefs');
-module.exports = { typeDefs };
+const resolvers = require('./resolvers');
+module.exports = { typeDefs, resolvers };

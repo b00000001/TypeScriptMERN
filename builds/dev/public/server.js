@@ -27,11 +27,12 @@ const apollo_server_express_1 = require("apollo-server-express");
 const dotenv = __importStar(require("dotenv"));
 const path = __importStar(require("path"));
 const db = require('./config/connection');
-const { typeDefs } = require('./schemas');
+const { typeDefs, resolvers } = require('./schemas');
 dotenv.config();
 const app = (0, express_1.default)();
 const server = new apollo_server_express_1.ApolloServer({
-    typeDefs
+    typeDefs,
+    resolvers,
 });
 server.applyMiddleware({ app });
 const PORT = process.env.PORT || 3001;

@@ -3,13 +3,14 @@ import { ApolloServer } from 'apollo-server-express'
 import * as dotenv from 'dotenv'
 import * as path from 'path'
 const db = require('./config/connection')
-const { typeDefs } = require('./schemas')
+const { typeDefs, resolvers } = require('./schemas')
 dotenv.config()
 
 const app = express()
 
 const server = new ApolloServer({
-  typeDefs
+  typeDefs,
+  resolvers,
 })
 
 server.applyMiddleware({ app })
