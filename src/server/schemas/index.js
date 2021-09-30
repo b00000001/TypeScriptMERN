@@ -1,3 +1,3 @@
 "use strict";
-var typeDefs = require('./typeDefs');
-module.exports = { typeDefs: typeDefs };
+const typeDefs = require('./typeDefs');
+module.exports = { typeDefs };

@@ -22,32 +22,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const apollo_server_express_1 = require("apollo-server-express");
+const promise_1 = __importDefault(require("mysql2/promise"));
+const path_1 = __importDefault(require("path"));
 const dotenv = __importStar(require("dotenv"));
-const path = __importStar(require("path"));
-const db = require('./config/connection');
-const { typeDefs } = require('./schemas');
-dotenv.config();
-const app = (0, express_1.default)();
-const server = new apollo_server_express_1.ApolloServer({
-    typeDefs
-});
-server.applyMiddleware({ app });
-const PORT = process.env.PORT || 3001;
-app.use(express_1.default.urlencoded({ extended: false }));
-app.use(express_1.default.json());
-if (process.env.NODE_ENV === 'production') {
-    app.use(express_1.default.static(path.join(__dirname, '../client/build')));
-}
-app.get('*', (_, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-db.sync().then(() => {
-    app.listen(PORT, () => {
-        // eslint-disable-next-line no-console
-        console.log(`API server running on port ${PORT}!`);
-        // eslint-disable-next-line no-console
-        console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+dotenv.config({ path: path_1.default.resolve(__dirname, '../.env') });
+const { DB_USER, DB_PASS, DB_NAME } = process.env;
+const createDatabase = async () => {
+    const connection = await promise_1.default.createConnection({
+        user: DB_USER,
+        password: DB_PASS
     });
-});
+    await connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`);
+    // eslint-disable-next-line no-console
+    console.log('Database created or successfully checked');
+    process.exit(0);
+};
+createDatabase();

@@ -22,32 +22,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var apollo_server_express_1 = require("apollo-server-express");
-var dotenv = __importStar(require("dotenv"));
-var path = __importStar(require("path"));
-var db = require('./config/connection');
-var typeDefs = require('./schemas').typeDefs;
+const express_1 = __importDefault(require("express"));
+const apollo_server_express_1 = require("apollo-server-express");
+const dotenv = __importStar(require("dotenv"));
+const path = __importStar(require("path"));
+const db = require('./config/connection');
+const { typeDefs } = require('./schemas');
 dotenv.config();
-var app = (0, express_1.default)();
-var server = new apollo_server_express_1.ApolloServer({
-    typeDefs: typeDefs
+const app = (0, express_1.default)();
+const server = new apollo_server_express_1.ApolloServer({
+    typeDefs
 });
-server.applyMiddleware({ app: app });
-var PORT = process.env.PORT || 3001;
+server.applyMiddleware({ app });
+const PORT = process.env.PORT || 3001;
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
 if (process.env.NODE_ENV === 'production') {
     app.use(express_1.default.static(path.join(__dirname, '../client/build')));
 }
-app.get('*', function (_, res) {
+app.get('*', (_, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-db.sync().then(function () {
-    app.listen(PORT, function () {
+db.sync().then(() => {
+    app.listen(PORT, () => {
         // eslint-disable-next-line no-console
-        console.log("API server running on port " + PORT + "!");
+        console.log(`API server running on port ${PORT}!`);
         // eslint-disable-next-line no-console
-        console.log("Use GraphQL at http://localhost:" + PORT + server.graphqlPath);
+        console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     });
 });

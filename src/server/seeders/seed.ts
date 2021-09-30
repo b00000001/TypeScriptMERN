@@ -15,3 +15,4 @@ db.sync({ force: true }).then(async () => {
   }
   process.exit(0)
 })
+export {}
