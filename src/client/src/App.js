@@ -1,5 +1,4 @@
 /* eslint-disable import/first */
-
 var __assign =
   (this && this.__assign) ||
   function () {
@@ -20,23 +19,43 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from '../src/components/Header';
 import Homepage from '../src/pages/Homepage';
+import Login from '../src/pages/Login';
+import Test from '../src/pages/Test';
 function App() {
   return _jsxs(
     Router,
     {
       children: [
         _jsx('div', { children: _jsx(Header, {}, void 0) }, void 0),
-        _jsx(
+        _jsxs(
           Switch,
           {
-            children: _jsx(
-              Route,
-              __assign(
-                { exact: true, path: '/' },
-                { children: _jsx(Homepage, {}, void 0) }
+            children: [
+              _jsx(
+                Route,
+                __assign(
+                  { exact: true, path: '/' },
+                  { children: _jsx(Homepage, {}, void 0) }
+                ),
+                void 0
               ),
-              void 0
-            )
+              _jsx(
+                Route,
+                __assign(
+                  { exact: true, path: '/login' },
+                  { children: _jsx(Login, {}, void 0) }
+                ),
+                void 0
+              ),
+              _jsx(
+                Route,
+                __assign(
+                  { exact: true, path: '/test' },
+                  { children: _jsx(Test, {}, void 0) }
+                ),
+                void 0
+              )
+            ]
           },
           void 0
         )
