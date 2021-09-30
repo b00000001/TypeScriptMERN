@@ -5,9 +5,15 @@ const index = () => {
   return (
     <>
       <nav>
-        <Link to="/">Home1</Link>
-        <Link to="/login">Login/Register</Link>
-        <Link to="/test">Test</Link>
+        <Link className="mr-2" to="/">
+          Home
+        </Link>
+        <Link className="mr-2" to="/login">
+          Login/Register
+        </Link>
+        <Link className="mr-2" to="/test">
+          Test
+        </Link>
       </nav>
     </>
   );
