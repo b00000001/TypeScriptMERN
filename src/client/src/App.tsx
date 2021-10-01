@@ -9,9 +9,7 @@ import Body from '../src/components/Body';
 function App() {
   return (
     <Router>
-      <div>
-        <Header />
-      </div>
+      <Header />
       <Body />
       <Footer />
     </Router>
