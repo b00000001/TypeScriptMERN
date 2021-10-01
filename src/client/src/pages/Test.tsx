@@ -1,12 +1,25 @@
 import React from 'react';
-import { useQuery } from '#apollo/client';
-import { QUERY_USER } from '../utils/query';
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from '../utils/queries';
 const Test = () => {
   const queryData = useQuery(QUERY_USER);
+  console.log(queryData);
   return (
     <div>
-      <h1>Test Page</h1>
-      {queryData.loading ? <h1>loading...</h1> : <h1>No query data to show</h1>}
+      {queryData.loading ? (
+        <h1>loading...</h1>
+      ) : (
+        queryData.data.users.map(
+          (user: { name: String; email: String; id: number }) => (
+            <div>
+              <h1 className="text-base">User Info</h1>
+              <h3 className="text-sm">User ID: {user.id}</h3>
+              <h3 className="text-sm">User Name: {user.name}</h3>
+              <h3 className="text-sm">User Email: {user.email}</h3>
+            </div>
+          )
+        )
+      )}
     </div>
   );
 };
