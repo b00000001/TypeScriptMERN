@@ -1,25 +1,38 @@
-import React from 'react';
+/* eslint-disable import/first */
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 const Test = () => {
+  const [users, changeUsers] = useState({
+    users: [],
+    showUsers: false
+  });
   const queryData = useQuery(QUERY_USER);
-  console.log(queryData);
+  const handleClick = () => {
+    if (users.showUsers) {
+      changeUsers({
+        users: [],
+        showUsers: false
+      });
+    } else {
+      changeUsers({
+        users: queryData.data.users,
+        showUsers: true
+      });
+    }
+  };
   return (
     <div>
-      {queryData.loading ? (
-        <h1>loading...</h1>
-      ) : (
-        queryData.data.users.map(
-          (user: { name: String; email: String; id: number }) => (
-            <div>
-              <h1 className="text-base">User Info</h1>
-              <h3 className="text-sm">User ID: {user.id}</h3>
-              <h3 className="text-sm">User Name: {user.name}</h3>
-              <h3 className="text-sm">User Email: {user.email}</h3>
-            </div>
+      <button className="btn btn-black" onClick={handleClick}>
+        Show Users
+      </button>
+      {users.showUsers
+        ? users.users.map(
+            (user: { name: String; id: Number; email: String }) => (
+              <p>{user.name}</p>
+            )
           )
-        )
-      )}
+        : null}
     </div>
   );
 };

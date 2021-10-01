@@ -15,58 +15,49 @@ var __assign =
     return __assign.apply(this, arguments);
   };
 import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
+/* eslint-disable import/first */
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 var Test = function () {
+  var _a = useState({
+      users: [],
+      showUsers: false
+    }),
+    users = _a[0],
+    changeUsers = _a[1];
   var queryData = useQuery(QUERY_USER);
-  console.log(queryData);
-  return _jsx(
+  var handleClick = function () {
+    if (users.showUsers) {
+      changeUsers({
+        users: [],
+        showUsers: false
+      });
+    } else {
+      changeUsers({
+        users: queryData.data.users,
+        showUsers: true
+      });
+    }
+  };
+  return _jsxs(
     'div',
     {
-      children: queryData.loading
-        ? _jsx('h1', { children: 'loading...' }, void 0)
-        : queryData.data.users.map(function (user) {
-            return _jsxs(
-              'div',
-              {
-                children: [
-                  _jsx(
-                    'h1',
-                    __assign(
-                      { className: 'text-base' },
-                      { children: 'User Info' }
-                    ),
-                    void 0
-                  ),
-                  _jsxs(
-                    'h3',
-                    __assign(
-                      { className: 'text-sm' },
-                      { children: ['User ID: ', user.id] }
-                    ),
-                    void 0
-                  ),
-                  _jsxs(
-                    'h3',
-                    __assign(
-                      { className: 'text-sm' },
-                      { children: ['User Name: ', user.name] }
-                    ),
-                    void 0
-                  ),
-                  _jsxs(
-                    'h3',
-                    __assign(
-                      { className: 'text-sm' },
-                      { children: ['User Email: ', user.email] }
-                    ),
-                    void 0
-                  )
-                ]
-              },
-              void 0
-            );
-          })
+      children: [
+        _jsx(
+          'button',
+          __assign(
+            { className: 'btn btn-black', onClick: handleClick },
+            { children: 'Show Users' }
+          ),
+          void 0
+        ),
+        users.showUsers
+          ? users.users.map(function (user) {
+              return _jsx('p', { children: user.name }, void 0);
+            })
+          : null
+      ]
     },
     void 0
   );

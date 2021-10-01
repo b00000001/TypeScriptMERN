@@ -2,5 +2,9 @@
     {
         "name": "Test account",
         "email": "test@example.com"
+    },
+    {
+        "name": "Aaron",
+        "email": "deas.aaron@gmail.com"
     }
 ]
