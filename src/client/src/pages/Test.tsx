@@ -29,7 +29,11 @@ const Test = () => {
       {users.showUsers
         ? users.users.map(
             (user: { name: String; id: Number; email: String }) => (
-              <p>{user.name}</p>
+              <div className="mt-2 border-2">
+                <p>User Name:{user.name}</p>
+                <p>User Id:{user.id}</p>
+                <p>User Email:{user.email}</p>
+              </div>
             )
           )
         : null}

@@ -54,7 +54,28 @@ var Test = function () {
         ),
         users.showUsers
           ? users.users.map(function (user) {
-              return _jsx('p', { children: user.name }, void 0);
+              return _jsxs(
+                'div',
+                __assign(
+                  { className: 'mt-2 border-2' },
+                  {
+                    children: [
+                      _jsxs(
+                        'p',
+                        { children: ['User Name:', user.name] },
+                        void 0
+                      ),
+                      _jsxs('p', { children: ['User Id:', user.id] }, void 0),
+                      _jsxs(
+                        'p',
+                        { children: ['User Email:', user.email] },
+                        void 0
+                      )
+                    ]
+                  }
+                ),
+                void 0
+              );
             })
           : null
       ]
