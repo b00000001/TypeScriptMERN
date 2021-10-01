@@ -2,8 +2,8 @@ import React from 'react';
 
 const index = () => {
   return (
-    <div>
-      <h1>Index</h1>
+    <div className="bg-black text-white">
+      <h1>Footer</h1>
     </div>
   );
 };

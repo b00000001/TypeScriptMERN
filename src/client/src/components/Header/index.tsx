@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const index = () => {
   return (
     <>
-      <nav>
+      <nav className="bg-black text-white">
         <Link className="mr-2" to="/">
           Home
         </Link>

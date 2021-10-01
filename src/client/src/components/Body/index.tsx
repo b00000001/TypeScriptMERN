@@ -6,7 +6,7 @@ import Test from '../../pages/Test';
 
 const index = () => {
   return (
-    <div>
+    <div className="bg-gray-800 text-white h-screen">
       <Switch>
         <Route exact path="/">
           <Homepage />
