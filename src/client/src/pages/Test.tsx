@@ -1,8 +1,10 @@
 /* eslint-disable import/first */
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER, QUERY_USERS } from '../utils/queries';
+import { ADD_USER } from '../utils/mutations';
 const Test = () => {
+  const [mutateFunction, { data, loading, error }] = useMutation(ADD_USER);
   const [users, changeUsers] = useState({
     users: [],
     showUsers: false
@@ -11,7 +13,7 @@ const Test = () => {
     name: '',
     email: ''
   });
-  const queryData = useQuery(QUERY_USER);
+  const queryData = useQuery(QUERY_USERS);
 
   /* ========================== Handle Change */
 
@@ -47,6 +49,9 @@ const Test = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log(formInfo);
+    mutateFunction({
+      variables: { name: formInfo.name, email: formInfo.email }
+    });
   };
 
   return (

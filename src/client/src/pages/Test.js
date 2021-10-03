@@ -16,21 +16,28 @@ var __assign =
   };
 import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
+import { ADD_USER } from '../utils/mutations';
 var Test = function () {
-  var _a = useState({
+  var _a = useMutation(ADD_USER),
+    mutateFunction = _a[0],
+    _b = _a[1],
+    data = _b.data,
+    loading = _b.loading,
+    error = _b.error;
+  var _c = useState({
       users: [],
       showUsers: false
     }),
-    users = _a[0],
-    changeUsers = _a[1];
-  var _b = useState({
+    users = _c[0],
+    changeUsers = _c[1];
+  var _d = useState({
       name: '',
       email: ''
     }),
-    formInfo = _b[0],
-    changeFormInfo = _b[1];
+    formInfo = _d[0],
+    changeFormInfo = _d[1];
   var queryData = useQuery(QUERY_USER);
   /* ========================== Handle Change */
   var handleChange = function (e) {
@@ -67,6 +74,9 @@ var Test = function () {
   var handleSubmit = function (e) {
     e.preventDefault();
     console.log(formInfo);
+    mutateFunction({
+      variables: { name: formInfo.name, email: formInfo.email }
+    });
   };
   return _jsxs(
     'div',
