@@ -7,7 +7,28 @@ const Test = () => {
     users: [],
     showUsers: false
   });
+  const [formInfo, changeFormInfo] = useState({
+    name: '',
+    email: ''
+  });
   const queryData = useQuery(QUERY_USER);
+
+  /* ========================== Handle Change */
+
+  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    switch (e.currentTarget.id) {
+      case 'firstName':
+        console.log('FirstName: ', e.currentTarget.value);
+        changeFormInfo({ ...formInfo, name: e.currentTarget.value });
+        break;
+      case 'email':
+        console.log('Email: ', e.currentTarget.value);
+        changeFormInfo({ ...formInfo, email: e.currentTarget.value });
+        break;
+    }
+  };
+
+  /* ========================== Handle Click */
   const handleClick = () => {
     if (users.showUsers) {
       changeUsers({
@@ -21,8 +42,16 @@ const Test = () => {
       });
     }
   };
+
+  /* ========================== Handle Submit */
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    console.log(formInfo);
+  };
+
   return (
     <div>
+      {/* ========================== Show Users Button */}
       <button
         className="bg-white border-2 border-gray-400 text-black"
         onClick={handleClick}
@@ -40,6 +69,44 @@ const Test = () => {
             )
           )
         : null}
+      {/* ========================== Add Users Form */}
+      <form
+        className="bg-white border-2 border-gray-400 text-black"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex flex-wrap">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-first-name"
+            >
+              Name
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="firstName"
+              type="text"
+              onChange={handleChange}
+              placeholder="Jane"
+              required
+            />
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="email"
+              type="email"
+              onChange={handleChange}
+              placeholder="jdoe@gmail.com"
+              required
+            />
+            <button
+              type="submit"
+              className="border-2 border-black btn bg-white text-black"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };
