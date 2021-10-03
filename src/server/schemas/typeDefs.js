@@ -9,5 +9,8 @@ type User {
 type Query {
     users: [User]
     user(id: ID!): User
+}
+type Mutation {
+    createUser(name: String!, email: String!): User
 }`;
 module.exports = typeDefs;

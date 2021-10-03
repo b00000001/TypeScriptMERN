@@ -47,7 +47,10 @@ var Test = function () {
         _jsx(
           'button',
           __assign(
-            { className: 'btn btn-black', onClick: handleClick },
+            {
+              className: 'bg-white border-2 border-gray-400 text-black',
+              onClick: handleClick
+            },
             { children: 'Show Users' }
           ),
           void 0
@@ -62,13 +65,13 @@ var Test = function () {
                     children: [
                       _jsxs(
                         'p',
-                        { children: ['User Name:', user.name] },
+                        { children: ['User Name: ', user.name] },
                         void 0
                       ),
-                      _jsxs('p', { children: ['User Id:', user.id] }, void 0),
+                      _jsxs('p', { children: ['User Id: ', user.id] }, void 0),
                       _jsxs(
                         'p',
-                        { children: ['User Email:', user.email] },
+                        { children: ['User Email: ', user.email] },
                         void 0
                       )
                     ]

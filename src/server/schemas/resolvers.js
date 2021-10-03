@@ -5,6 +5,11 @@ const resolvers = {
         users: async () => {
             return await User.findAll();
         }
-    }
+    },
+    Mutation: {
+        createUser: async (_, { name, email }) => {
+            return await User.create({ name, email });
+        }
+    },
 };
 module.exports = resolvers;

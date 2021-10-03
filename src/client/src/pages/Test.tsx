@@ -23,16 +23,19 @@ const Test = () => {
   };
   return (
     <div>
-      <button className="btn btn-black" onClick={handleClick}>
+      <button
+        className="bg-white border-2 border-gray-400 text-black"
+        onClick={handleClick}
+      >
         Show Users
       </button>
       {users.showUsers
         ? users.users.map(
             (user: { name: String; id: Number; email: String }) => (
               <div className="mt-2 border-2">
-                <p>User Name:{user.name}</p>
-                <p>User Id:{user.id}</p>
-                <p>User Email:{user.email}</p>
+                <p>User Name: {user.name}</p>
+                <p>User Id: {user.id}</p>
+                <p>User Email: {user.email}</p>
               </div>
             )
           )
