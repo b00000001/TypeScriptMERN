@@ -9,8 +9,8 @@ const resolvers = {
         users: async () => {
             return await User.findAll()
         },
-        user: async (_: any, { id }:{ id: number }) => {
-            return await User.findByPk(id)
+        user: async (_: any, { email }:{ email: String }) => {
+            return User.findOne({ where: { email: email } })
         }
     },
     Mutation: {

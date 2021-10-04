@@ -20,7 +20,6 @@ const Test = () => {
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     switch (e.currentTarget.id) {
       case 'firstName':
-        console.log('FirstName: ', e.currentTarget.value);
         changeFormInfo({ ...formInfo, name: e.currentTarget.value });
         break;
       case 'email':
@@ -56,24 +55,6 @@ const Test = () => {
 
   return (
     <div>
-      {/* ========================== Show Users Button */}
-      <button
-        className="bg-white border-2 border-gray-400 text-black"
-        onClick={handleClick}
-      >
-        Show Users
-      </button>
-      {users.showUsers
-        ? users.users.map(
-            (user: { name: String; id: Number; email: String }) => (
-              <div className="mt-2 border-2">
-                <p>User Name: {user.name}</p>
-                <p>User Id: {user.id}</p>
-                <p>User Email: {user.email}</p>
-              </div>
-            )
-          )
-        : null}
       {/* ========================== Add Users Form */}
       <form
         className="bg-white border-2 border-gray-400 text-black"
@@ -109,9 +90,28 @@ const Test = () => {
             >
               Submit
             </button>
+            {loading ? <p>Adding User</p> : null}
           </div>
         </div>
       </form>
+      {/* ========================== Show Users Button */}
+      <button
+        className="bg-white border-2 border-gray-400 text-black"
+        onClick={handleClick}
+      >
+        Show Users
+      </button>
+      {users.showUsers
+        ? users.users.map(
+            (user: { name: String; id: Number; email: String }) => (
+              <div className="mt-2 border-2">
+                <p>User Name: {user.name}</p>
+                <p>User Id: {user.id}</p>
+                <p>User Email: {user.email}</p>
+              </div>
+            )
+          )
+        : null}
     </div>
   );
 };

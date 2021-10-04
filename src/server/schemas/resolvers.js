@@ -4,6 +4,9 @@ const resolvers = {
     Query: {
         users: async () => {
             return await User.findAll();
+        },
+        user: async (_, { email }) => {
+            return User.findOne({ where: { email: email } });
         }
     },
     Mutation: {

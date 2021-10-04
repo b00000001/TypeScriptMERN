@@ -17,7 +17,7 @@ var __assign =
 import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { QUERY_USERS } from '../utils/queries';
 import { ADD_USER } from '../utils/mutations';
 var Test = function () {
   var _a = useMutation(ADD_USER),
@@ -38,12 +38,11 @@ var Test = function () {
     }),
     formInfo = _d[0],
     changeFormInfo = _d[1];
-  var queryData = useQuery(QUERY_USER);
+  var queryData = useQuery(QUERY_USERS);
   /* ========================== Handle Change */
   var handleChange = function (e) {
     switch (e.currentTarget.id) {
       case 'firstName':
-        console.log('FirstName: ', e.currentTarget.value);
         changeFormInfo(
           __assign(__assign({}, formInfo), { name: e.currentTarget.value })
         );
@@ -82,43 +81,6 @@ var Test = function () {
     'div',
     {
       children: [
-        _jsx(
-          'button',
-          __assign(
-            {
-              className: 'bg-white border-2 border-gray-400 text-black',
-              onClick: handleClick
-            },
-            { children: 'Show Users' }
-          ),
-          void 0
-        ),
-        users.showUsers
-          ? users.users.map(function (user) {
-              return _jsxs(
-                'div',
-                __assign(
-                  { className: 'mt-2 border-2' },
-                  {
-                    children: [
-                      _jsxs(
-                        'p',
-                        { children: ['User Name: ', user.name] },
-                        void 0
-                      ),
-                      _jsxs('p', { children: ['User Id: ', user.id] }, void 0),
-                      _jsxs(
-                        'p',
-                        { children: ['User Email: ', user.email] },
-                        void 0
-                      )
-                    ]
-                  }
-                ),
-                void 0
-              );
-            })
-          : null,
         _jsx(
           'form',
           __assign(
@@ -187,7 +149,10 @@ var Test = function () {
                                 { children: 'Submit' }
                               ),
                               void 0
-                            )
+                            ),
+                            loading
+                              ? _jsx('p', { children: 'Adding User' }, void 0)
+                              : null
                           ]
                         }
                       ),
@@ -200,7 +165,44 @@ var Test = function () {
             }
           ),
           void 0
-        )
+        ),
+        _jsx(
+          'button',
+          __assign(
+            {
+              className: 'bg-white border-2 border-gray-400 text-black',
+              onClick: handleClick
+            },
+            { children: 'Show Users' }
+          ),
+          void 0
+        ),
+        users.showUsers
+          ? users.users.map(function (user) {
+              return _jsxs(
+                'div',
+                __assign(
+                  { className: 'mt-2 border-2' },
+                  {
+                    children: [
+                      _jsxs(
+                        'p',
+                        { children: ['User Name: ', user.name] },
+                        void 0
+                      ),
+                      _jsxs('p', { children: ['User Id: ', user.id] }, void 0),
+                      _jsxs(
+                        'p',
+                        { children: ['User Email: ', user.email] },
+                        void 0
+                      )
+                    ]
+                  }
+                ),
+                void 0
+              );
+            })
+          : null
       ]
     },
     void 0
