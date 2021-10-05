@@ -5,6 +5,14 @@ import { QUERY_USER, QUERY_USERS } from '../utils/queries';
 import { ADD_USER } from '../utils/mutations';
 const Test = () => {
   const [mutateFunction, { data, loading, error }] = useMutation(ADD_USER);
+  interface alertType {
+    show: Boolean;
+    message: JSX.Element;
+  }
+  const [alert, changeAlert] = useState<alertType>({
+    show: false,
+    message: <></>
+  });
   const [users, changeUsers] = useState({
     users: [],
     showUsers: false
@@ -23,7 +31,6 @@ const Test = () => {
         changeFormInfo({ ...formInfo, name: e.currentTarget.value });
         break;
       case 'email':
-        console.log('Email: ', e.currentTarget.value);
         changeFormInfo({ ...formInfo, email: e.currentTarget.value });
         break;
     }
@@ -47,10 +54,20 @@ const Test = () => {
   /* ========================== Handle Submit */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(formInfo);
     mutateFunction({
       variables: { name: formInfo.name, email: formInfo.email }
     });
+    if (!data) {
+      changeAlert({
+        show: true,
+        message: <p className="mr-2">A user with this email already exists</p>
+      });
+    } else {
+      changeAlert({
+        show: true,
+        message: <p className="mr-2">'User created successfully'</p>
+      });
+    }
   };
 
   return (
@@ -91,6 +108,7 @@ const Test = () => {
               Submit
             </button>
             {loading ? <p>Adding User</p> : null}
+            {alert.show ? alert.message : null}
           </div>
         </div>
       </form>

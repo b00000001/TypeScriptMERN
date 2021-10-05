@@ -14,7 +14,11 @@ var __assign =
       };
     return __assign.apply(this, arguments);
   };
-import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
+import {
+  Fragment as _Fragment,
+  jsx as _jsx,
+  jsxs as _jsxs
+} from 'react/jsx-runtime';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
@@ -27,17 +31,23 @@ var Test = function () {
     loading = _b.loading,
     error = _b.error;
   var _c = useState({
+      show: false,
+      message: _jsx(_Fragment, {}, void 0)
+    }),
+    alert = _c[0],
+    changeAlert = _c[1];
+  var _d = useState({
       users: [],
       showUsers: false
     }),
-    users = _c[0],
-    changeUsers = _c[1];
-  var _d = useState({
+    users = _d[0],
+    changeUsers = _d[1];
+  var _e = useState({
       name: '',
       email: ''
     }),
-    formInfo = _d[0],
-    changeFormInfo = _d[1];
+    formInfo = _e[0],
+    changeFormInfo = _e[1];
   var queryData = useQuery(QUERY_USERS);
   /* ========================== Handle Change */
   var handleChange = function (e) {
@@ -48,7 +58,6 @@ var Test = function () {
         );
         break;
       case 'email':
-        console.log('Email: ', e.currentTarget.value);
         changeFormInfo(
           __assign(__assign({}, formInfo), { email: e.currentTarget.value })
         );
@@ -72,10 +81,34 @@ var Test = function () {
   /* ========================== Handle Submit */
   var handleSubmit = function (e) {
     e.preventDefault();
-    console.log(formInfo);
     mutateFunction({
       variables: { name: formInfo.name, email: formInfo.email }
     });
+    if (!data) {
+      changeAlert({
+        show: true,
+        message: _jsx(
+          'p',
+          __assign(
+            { className: 'mr-2' },
+            { children: 'A user with this email already exists' }
+          ),
+          void 0
+        )
+      });
+    } else {
+      changeAlert({
+        show: true,
+        message: _jsx(
+          'p',
+          __assign(
+            { className: 'mr-2' },
+            { children: "'User created successfully'" }
+          ),
+          void 0
+        )
+      });
+    }
   };
   return _jsxs(
     'div',
@@ -152,7 +185,8 @@ var Test = function () {
                             ),
                             loading
                               ? _jsx('p', { children: 'Adding User' }, void 0)
-                              : null
+                              : null,
+                            alert.show ? alert.message : null
                           ]
                         }
                       ),
