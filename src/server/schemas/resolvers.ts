@@ -15,10 +15,10 @@ const resolvers = {
     },
     Mutation: {
         createUser: async (_: any, { name, email }: UserInterface) => {
-            // const userData = await User.findOne({ where: { email: email } })
-            // if (userData) {
-            //     throw new Error('User already exists')
-            // }
+            const userData = await User.findOne({ where: { email: email } })
+            if (userData) {
+                return
+            }
             return await User.create({ name, email });
         }
     },
