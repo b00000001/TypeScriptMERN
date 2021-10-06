@@ -1,37 +1,29 @@
 /* eslint-disable import/first */
 
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
 import env from 'react-dotenv';
+import { GoogleLoginButton } from 'ts-react-google-login-component';
 
 const Login = () => {
-  // const [login, { error }] = useMutation(ADD_GOOGLE_USER);
-  const onSuccess = async (res: any) => {
-    // try {
-    //   const mutationResponse = await login({
-    //     variables: {
-    //       username: res.profileObj.givenName,
-    //       email: res.profileObj.email
-    //     }
-    //   });
-    // } catch (e) {
-    //   console.log(e);
-    // }
-    // window.location.assign("/home");
-    console.log(res);
+  const clientConfig = { client_id: env.CLIENT_ID };
+  const responseGoogle = (response: any): void => {
+    console.log(response);
+  };
+  const preLogin = (): void => {
+    console.log('preLogin');
   };
 
-  const onFailure = () => {
-    console.log('[Login Failure]');
+  const errorHandler = (err: any): void => {
+    console.log(err);
   };
+
   return (
     <div>
-      <GoogleLogin
-        clientId={env.CLIENT_ID}
-        buttonText="Login"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
+      <GoogleLoginButton
+        responseHandler={responseGoogle}
+        clientConfig={clientConfig}
+        preLogin={preLogin}
+        failureHandler={errorHandler}
       />
     </div>
   );
