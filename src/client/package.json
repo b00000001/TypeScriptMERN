@@ -52,7 +52,7 @@
   },
   "react-dotenv": {
     "whitelist": [
-      "DB_USER"
+      "CLIENT_ID"
     ]
   }
 }
