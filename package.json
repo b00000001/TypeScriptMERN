@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node server/server.js",
-    "develop": "concurrently \"cd src/server && npm run watch\" \"cd src/client && npm start\"",
+    "develop": "tsc --build && concurrently \"cd src/server && npm run watch\" \"cd src/client && npm start\"",
     "install": "cd ./src/server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build",

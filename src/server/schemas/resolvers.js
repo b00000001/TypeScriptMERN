@@ -13,7 +13,7 @@ const resolvers = {
         createUser: async (_, { name, email }) => {
             const userData = await User.findOne({ where: { email: email } });
             if (userData) {
-                return;
+                return userData;
             }
             return await User.create({ name, email });
         }
