@@ -17,7 +17,7 @@ const resolvers = {
         createUser: async (_: any, { name, email }: UserInterface) => {
             const userData = await User.findOne({ where: { email: email } })
             if (userData) {
-                return
+                return userData
             }
             return await User.create({ name, email });
         }
