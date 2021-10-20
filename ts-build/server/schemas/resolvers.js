@@ -7,6 +7,9 @@ const resolvers = {
         },
         user: async (_, { email }) => {
             return User.findOne({ where: { email: email } });
+        },
+        me: async (_, { email }) => {
+            return User.findOne({ where: { email: email } });
         }
     },
     Mutation: {
@@ -17,6 +20,6 @@ const resolvers = {
             }
             return await User.create({ name, email });
         }
-    },
+    }
 };
 module.exports = resolvers;

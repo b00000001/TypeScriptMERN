@@ -5,11 +5,12 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node server/server.js",
-    "develop": "concurrently tsc -w && \"cd ts-build/server && npm run watch\" \"cd ts-build/client && npm start\"",
+    "develop": "concurrently \"cd ts-build/server && npm run watch\" \"cd ts-build/client && npm start\"",
     "install": "cd ./ts-build/server && npm i && cd ./ts-build/client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build",
     "lint": "eslint \"**/*.{ts,tsx}\"",
+    "watch": "tsc -w",
     "postbuild": "cp ./src/client/package.json ts-build/client/package.json && cp ./src/server/package.json ./ts-build/server/package.json && npm install"
   },
   "repository": {
