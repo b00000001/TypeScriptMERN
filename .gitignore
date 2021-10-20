@@ -135,3 +135,4 @@ dist
 
 .tern-port
 package-lock.json
+ts-build/
